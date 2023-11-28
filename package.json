@@ -1,10 +1,10 @@
 {
-  "name": "electron-vue-vite",
-  "version": "2.0.0",
+  "name": "mergebot-ui",
+  "version": "1.0.0",
   "main": "dist-electron/main/index.js",
-  "description": "Really simple Electron + Vue + Vite boilerplate.",
-  "author": "草鞋没号 <308487730@qq.com>",
-  "license": "MIT",
+  "description": "UI of mergebot conflicts resolver",
+  "author": "Hwa<hwahe.cs@gmail.com>",
+  "license": "MPL-2.0",
   "private": true,
   "keywords": [
     "electron",
@@ -21,17 +21,28 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build && electron-builder",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "1.0.0-beta.27",
     "@vitejs/plugin-vue": "^4.3.3",
+    "autoprefixer": "^10.4.16",
     "electron": "^26.0.0",
     "electron-builder": "^24.6.3",
+    "eslint": "^8.51.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3.3.3",
     "typescript": "^5.1.6",
     "vite": "^4.4.9",
     "vite-plugin-electron": "^0.14.0",
     "vite-plugin-electron-renderer": "^0.14.5",
     "vue": "^3.3.4",
     "vue-tsc": "^1.8.8"
+  },
+  "dependencies": {
+    "pinia": "^2.1.7",
+    "vue-router": "^4.2.5"
   }
 }
