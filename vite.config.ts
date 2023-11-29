@@ -6,6 +6,10 @@ import renderer from 'vite-plugin-electron-renderer'
 import { notBundle } from 'vite-plugin-electron/plugin'
 import pkg from './package.json'
 import { resolve } from 'path'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { TDesignResolver } from 'unplugin-vue-components/resolvers'
+import monacoEditorPlugin from 'vite-plugin-monaco-editor'
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command }) => {
@@ -17,6 +21,7 @@ export default defineConfig(({ command }) => {
 
   return {
     plugins: [
+      monacoEditorPlugin({}),
       vue(),
       electron([
         {
@@ -73,6 +78,22 @@ export default defineConfig(({ command }) => {
       ]),
       // Use Node.js API in the Renderer process
       renderer(),
+
+      AutoImport({
+        resolvers: [
+          TDesignResolver({
+            library: 'vue-next'
+          }),
+        ]
+      }),
+
+      Components({
+        resolvers: [
+          TDesignResolver({
+            library: 'vue-next'
+          }),
+        ],
+      }),
     ],
     server: process.env.VSCODE_DEBUG && (() => {
       const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
